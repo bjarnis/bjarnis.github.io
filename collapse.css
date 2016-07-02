@@ -1,0 +1,69 @@
+
+body {
+	background-color: #eeeeee;
+	padding: 0px;
+	margin: 0px;
+}
+#scoreTable {
+	width: 200px;
+	height: 400px;
+	float: left;
+	margin-left: -200px;
+}
+#scoreTable ul {
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #C9C9C9;
+	border-bottom: 0px;
+}
+#scoreTable ul li
+{
+	list-style:none;
+	padding:5px 10px;
+	border-bottom:1px solid #C9C9C9;
+}
+#scoreTable ul.label
+{
+	font-weight:bold;
+	background:#333;
+	color:#fff;
+}
+#scoreTable ul li.even
+{
+background:#fff
+}
+#scoreTable ul li.odd
+{
+	background:#FFFFE6
+}
+
+
+
+
+
+#collapseGame {
+	margin:auto;
+	width: 400px;
+	margin-top: 50px;
+}
+#canvasContainer {
+	vertical-align: middle;
+	margin:auto;
+	height: 100px;
+	width: 100px;
+	cursor: pointer;
+}	
+#scoreNr, #gameLinks {
+	display: block;
+	width: 400px;
+	margin: 0px auto;
+	text-align: center;
+}
+#gameBoard {
+	cursor: hand;
+	cursor: pointer;
+}
+#gameBoard:active {
+	/*cursor: default;*/
+}
+
