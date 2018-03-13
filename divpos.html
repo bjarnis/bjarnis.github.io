@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Div position</title>
+		<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<style>
+			#console {
+				background-color: black;
+				color: white;
+				position: fixed;
+				top: 1px;
+				left: 1px;
+			}
+			#element2 {
+				margin-left: 10px;
+				margin-top: 910px;
+				margin-bottom: 900px;
+				width: 400px;
+				height: 120px;
+				background-color: green;
+			}
+		</style>
+		<script>
+			function visibleY(element){
+				var pageTop = $(window).scrollTop();
+				var pageBottom = pageTop + $(window).height();
+				var elementTop = $(element).offset().top;
+				var elementBottom = elementTop + $(element).height();
+
+
+				var buff = '['+ Math.round(pageTop) +', '+  Math.round(elementTop) +']';
+				buff += ' - ['+  Math.round(pageBottom) +', '+  Math.round(elementBottom) +']';
+				if ((pageTop < elementTop) && (pageBottom > elementBottom)){
+					buff += ' > whole object visible';
+				}
+				else if (elementBottom < pageTop){
+					buff += ' > above';
+				}
+				else if (elementTop > pageBottom){
+					buff += ' > bellow';
+				}
+				else if ((elementTop < pageBottom) && (elementBottom > pageBottom)){
+					buff += ' > top visible';
+				}
+				else if ((elementBottom > pageTop) && (elementTop < pageTop)){
+					buff += ' > bottom visible';
+				}
+				else {
+					buff += ' > wtf';
+				}
+				return buff;
+			};
+
+			// Stuff only for the demo
+			function attachEvent(element, event, callbackFunction) {
+				if (element.addEventListener) {
+					element.addEventListener(event, callbackFunction, false);
+				} else if (element.attachEvent) {
+					element.attachEvent('on' + event, callbackFunction);
+				}
+			};
+
+			var update = function(){
+				document.getElementById('console').innerHTML = visibleY(document.getElementById('element2')) ;
+			};
+			attachEvent(window, "scroll", update);
+			attachEvent(window, "resize", update);
+			update();
+
+		</script>
+	</head>
+	<body>
+		<div id="console"></div>
+		<div id="element2"></div>
+	</body>
+</html>
