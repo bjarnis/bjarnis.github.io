@@ -4,12 +4,19 @@
 		<title>Div position</title>
 		<script async="" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<style>
-			#console {
+			.console {
 				background-color: black;
 				color: white;
 				position: fixed;
 				top: 1px;
+				width: 200px;
+				text-align: center;
+			}
+			#nrconsole {
 				left: 1px;
+			}
+			#textconsole {
+				left: 205px;
 			}
 			#element2 {
 				margin-left: 10px;
@@ -31,22 +38,22 @@
 				var buff = '['+ Math.round(pageTop) +', '+  Math.round(elementTop) +']';
 				buff += ' - ['+  Math.round(pageBottom) +', '+  Math.round(elementBottom) +']';
 				if ((pageTop < elementTop) && (pageBottom > elementBottom)){
-					buff += ' > whole object visible';
+					buff += '>whole object visible';
 				}
 				else if (elementBottom < pageTop){
-					buff += ' > above';
+					buff += '>above';
 				}
 				else if (elementTop > pageBottom){
-					buff += ' > bellow';
+					buff += '>bellow';
 				}
 				else if ((elementTop < pageBottom) && (elementBottom > pageBottom)){
-					buff += ' > top visible';
+					buff += '>top visible';
 				}
 				else if ((elementBottom > pageTop) && (elementTop < pageTop)){
-					buff += ' > bottom visible';
+					buff += '>bottom visible';
 				}
 				else {
-					buff += ' > wtf';
+					buff += '>wtf';
 				}
 				return buff;
 			};
@@ -61,7 +68,9 @@
 			};
 
 			var update = function(){
-				document.getElementById('console').innerHTML = visibleY(document.getElementById('element2')) ;
+				var out =  visibleY(document.getElementById('element2')).split('>');
+				document.getElementById('textconsole').innerHTML = out[1];
+				document.getElementById('nrconsole').innerHTML = out[0];
 			};
 			attachEvent(window, "scroll", update);
 			attachEvent(window, "resize", update);
@@ -70,7 +79,7 @@
 		</script>
 	</head>
 	<body>
-		<div id="console"></div>
+		<span id="textconsole" class="console">asdf</span><span id="nrconsole" class="console">1234</span>
 		<div id="element2"></div>
 	</body>
 </html>
